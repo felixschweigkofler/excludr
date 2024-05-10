@@ -1,0 +1,18 @@
+Package: excludr
+Type: Package
+Title: View and exclude datapoints in multi-level long format dataframes
+Version: 0.1.0
+Author: Felix Schweigkofler
+Maintainer: Felix Schweigkofler <felixschweigkofler@gmail.com>
+Description: Create data groupings in a multi-level long format dataframe (ldf) and overwrite specified values with NA:
+	- Test a summary statistic (mean,sd,...) of each grouping's datapoints (e.g. trial durations) against a defineable criterion (e.g. >2) to find excludeable groupings. Mask parts of groupings (e.g. ignore accuracy datapoints) in the testing and/or exclusion phase and transfer exclusions found in fine-grained groupings (e.g. per participant, per session, per measure type (duration and accuracy)) to less fine-grained groupings (e.g. per participant, all sessions, all measure types).
+	- Trim bottom and/or top datapoints within each grouping
+	- Trim datapoints within each grouping that are more than X times the spread (sd, mad, ...) beyond the center (mean, median, ...) of the grouping's data.
+	- Copy the trimming status from one type of datapoint to related types of datapoints.
+	- View grouped data in point, line, histogram, density, box, or violin plots and name groupings to identify relevant datapoints or patterns.
+	The package was designed to aid and speed up the process of reviewing multi-level raw data and quickly checking the downstream impact of different patterns of exclusion and trimming.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr
+RoxygenNote: 7.3.1
