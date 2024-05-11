@@ -3,7 +3,7 @@
 #' Check arguments
 #'
 #' Check if arguments are properly formatted and fit the ldf
-#' @noRd
+#' @export
 check.arguments = function(ldf = parent.frame()$ldf,
                                value.col = parent.frame()$value.col,
                                group.by = parent.frame()$group.by,
@@ -56,7 +56,7 @@ check.arguments = function(ldf = parent.frame()$ldf,
 #' Use apply.to and apply.not.to to select or deselect rows
 #' @param ldf A dataframe
 #' @param apply.to,apply.not.to Named lists of vectors, with the name corresponding to the colnames of the ldf and the vectors containing the identifiers used to (un)select rows from ldf that contain the identifier(s) in the specified columns.
-#' @noRd
+#' @export
 apply.to.not.to = function(ldf, apply.to, apply.not.to ){
   if(!is.null(apply.to))     for (i in names(apply.to))     if(i %in% colnames(ldf)) ldf = ldf[ ldf[[i]] %in% apply.to[[i]],]
   if(!is.null(apply.not.to)) for (i in names(apply.not.to)) if(i %in% colnames(ldf)) ldf = ldf[!ldf[[i]] %in% apply.not.to[[i]],]
