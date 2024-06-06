@@ -47,11 +47,11 @@ Groups an ldf by certain columns, calculates a freely definable statistic for ea
 }
 \examples{
 # Exclude each participant in each session who has a mean ACC smaller or equal 0.8. 'exclude.by' is not defined, therefore a grouping's test is only applied to itself. 'excl' is not defined, therefore RT values are excluded as well, not only the ACC-values which were tested
-ldf = exclude.groupings(ldf = example.trial.data(), group.by = c('ID','session'), test = list(measure = 'ACC'), criterion = function(S) return(S <= 0.8))
+ldf = exclude.groupings(ldf = example.trial.data(seed = 1), group.by = c('ID','session'), test = list(measure = 'ACC'), criterion = function(S) return(S <= 0.8))
 # Do the same, but now make the exclusion-grouping less fine-grained than the test-grouping: By setting exclude.by = 'ID', a participant's values are excluded in both sessions, if the participant fulfils the exclusion criteria in either or both sessions (a test of the 'ID*session'-sub-grouping is projected to the exclusion-super-grouping 'ID')
-ldf = exclude.groupings(ldf = example.trial.data(), group.by = c('ID','session'), exclude.by = c('ID'), test = list(measure = 'ACC'), criterion = function(S) return(S <= 0.8))
+ldf = exclude.groupings(ldf = example.trial.data(), group.by = c('ID','session'), exclude.by = 'ID', test = list(measure = 'ACC'), criterion = function(S) return(S <= 0.8))
 # Do the same, but now exempt session 2 from exclusion. Note that it is not exempt from testing, which means a participant who fulfils the criterion in session 2 is excluded in session 1, but session 2 is exempt
-ldf = exclude.groupings(ldf = example.trial.data(), group.by = c('ID','session'), exclude.by = c('ID'), test = list(measure = 'ACC'), excl.not = c(session = '2'), criterion = function(S) return(S <= 0.8))
+ldf = exclude.groupings(ldf = example.trial.data(), group.by = c('ID','session'), exclude.by = 'ID', test = list(measure = 'ACC'), excl.not = c(session = '2'), criterion = function(S) return(S <= 0.8))
 # Back to the basic exclusion, but while testing ACC, only apply exclusion to RT. 'report.by' won't show
 ldf = exclude.groupings(ldf = example.trial.data(), group.by = c('ID','session'), test = list(measure = 'ACC'), excl = list(measure = 'RT'), criterion = function(S) return(S <= 0.8), report.by = c('measure','session'))
 stat = trim.statistics(ldf = ldf, report.by = c('measure','session'), print.stats = T)
